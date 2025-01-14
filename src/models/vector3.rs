@@ -35,7 +35,7 @@ impl<T> Deref for Vec3<T> {
     }
 }
 
-/// Converts Normalized color to RGB
+/// Converts a normalized color vector to RGB
 impl Vec3<f64> {
     pub fn to_rgb(self) -> Vec3<u8> {
         let [r, g, b] = self.0;
@@ -47,7 +47,7 @@ impl Vec3<f64> {
         );
     }
 }
-/// Converts RGB to normalized colors
+/// Converts an RGB color vector to normalized values
 impl Vec3<u8> {
     pub fn to_normalized(self) -> Vec3<f64> {
         let [r, g, b] = self.0;
