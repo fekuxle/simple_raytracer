@@ -18,6 +18,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     // Generate Pixel data
     for h in 0..IMG_HEIGHT {
+        println!("Rendering Scanline {} out of {}", h, IMG_HEIGHT);
         for w in 0..IMG_WIDTH {
             let red = w as f64 / (IMG_WIDTH - 1) as f64;
             let green = h as f64 / (IMG_HEIGHT - 1) as f64;
