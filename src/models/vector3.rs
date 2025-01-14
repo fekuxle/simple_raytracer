@@ -1,6 +1,6 @@
 #![allow(unused)]
 
-use std::{fmt, ops::Deref};
+use std::{fmt, ops};
 
 //use crate::MAX_COLOR;
 pub const MAX_COLOR: f64 = 255.0;
@@ -28,10 +28,16 @@ where
     }
 }
 
-impl<T> Deref for Vec3<T> {
+impl<T> ops::Deref for Vec3<T> {
     type Target = [T; 3];
     fn deref(&self) -> &Self::Target {
         &self.0
+    }
+}
+
+impl<T> ops::DerefMut for Vec3<T> {
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
     }
 }
 
