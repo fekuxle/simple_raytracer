@@ -65,3 +65,48 @@ impl Vec3<u8> {
         );
     }
 }
+
+impl<T: ops::Add<Output=T> + Copy> ops::Add for Vec3<T> {
+    type Output = Self;
+    fn add(self, rhs: Self) -> Self::Output {
+        Vec3::new(self[0] + rhs[0], self[1] + rhs[1], self[2] + rhs[2])
+    }
+}
+
+impl<T: ops::Add<Output = T> + Copy> ops::AddAssign for Vec3<T> {
+    fn add_assign(&mut self, rhs: Self) {
+        self[0] = self[0] + rhs[0];
+        self[1] = self[1] + rhs[1];
+        self[2] = self[2] + rhs[2];
+    }
+}
+
+impl<T: ops::Mul<Output = T> + Copy> ops::Mul for Vec3<T> {
+    type Output = Self;
+    fn mul(self, rhs: Self) -> Self::Output {
+        Vec3::new(self[0] * rhs[0], self[1] * rhs[1], self[2] * rhs[2])
+    }
+}
+
+impl<T: ops::Mul<Output = T> + Copy> ops::MulAssign for Vec3<T> {
+    fn mul_assign(&mut self, rhs: Self) {
+        self[0] = self[0] * rhs[0];
+        self[1] = self[1] * rhs[1];
+        self[2] = self[2] * rhs[2];
+    }
+}
+
+impl<T: ops::Div<Output = T> + Copy> ops::Div for Vec3<T> {
+    type Output = Self;
+    fn div(self, rhs: Self) -> Self::Output {
+        Vec3::new(self[0] / rhs[0], self[1] / rhs[1], self[2] / rhs[2])
+    }
+}
+
+impl<T: ops::Div<Output = T> + Copy> ops::DivAssign for Vec3<T> {
+    fn div_assign(&mut self, rhs: Self) {
+        self[0] = self[0] / rhs[0];
+        self[1] = self[1] / rhs[1];
+        self[2] = self[2] / rhs[2];
+    }
+}
