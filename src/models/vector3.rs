@@ -2,8 +2,6 @@
 
 use std::{fmt, ops};
 
-//use crate::MAX_COLOR;
-pub const MAX_COLOR: f64 = 255.0;
 /// Generic struct which can represent a Color, Position and a Vector among other things
 #[derive(Default, Debug, Clone, PartialEq, PartialOrd)]
 pub struct Vector3<T>(pub [T; 3]);
@@ -38,31 +36,6 @@ impl<T> ops::Deref for Vector3<T> {
 impl<T> ops::DerefMut for Vector3<T> {
     fn deref_mut(&mut self) -> &mut Self::Target {
         &mut self.0
-    }
-}
-
-/// Converts a normalized color vector to RGB
-impl Vector3<f64> {
-    pub fn to_rgb(self) -> Vector3<u8> {
-        let [r, g, b] = self.0;
-
-        return Vector3::new(
-            (r * MAX_COLOR) as u8,
-            (g * MAX_COLOR) as u8,
-            (b * MAX_COLOR) as u8,
-        );
-    }
-}
-/// Converts an RGB color vector to normalized values
-impl Vector3<u8> {
-    pub fn to_normalized(self) -> Vector3<f64> {
-        let [r, g, b] = self.0;
-
-        return Vector3::new(
-            r as f64 / MAX_COLOR,
-            g as f64 / MAX_COLOR,
-            b as f64 / MAX_COLOR,
-        );
     }
 }
 

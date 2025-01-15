@@ -2,5 +2,7 @@
 #![allow(unused_imports)]
 
 pub mod vector3;
+pub mod color;
 
 pub use vector3::Vector3;
+pub use color::{RGBColor, NormalizedColor};

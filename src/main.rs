@@ -2,7 +2,7 @@
 use std::{error::Error, fs::File, io::Write};
 
 mod models;
-use models::Vector3;
+use models::{NormalizedColor, RGBColor};
 
 const IMG_HEIGHT: u16 = 256;
 const IMG_WIDTH: u16 = 256;
@@ -23,9 +23,8 @@ fn main() -> Result<(), Box<dyn Error>> {
             let red = w as f64 / (IMG_WIDTH - 1) as f64;
             let green = h as f64 / (IMG_HEIGHT - 1) as f64;
 
-            let color = Vector3([(red * MAX_COLOR) as u8, (green * MAX_COLOR) as u8, 0]);
-
-            writeln!(file, "{}", color)?;
+            let color = RGBColor::new((red * MAX_COLOR) as u8, (green * MAX_COLOR) as u8, 0);
+            writeln!(file, "{}", *color)?;
         }
     }
 
