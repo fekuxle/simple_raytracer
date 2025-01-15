@@ -25,4 +25,3 @@ impl ops::DerefMut for Point {
         &mut self.0
     }
 }
-

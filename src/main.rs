@@ -2,7 +2,7 @@
 use std::{error::Error, fs::File, io::Write};
 
 mod models;
-use models::{NormalizedColor, RGBColor, PPMFile};
+use models::{NormalizedColor, PPMFile, RGBColor};
 
 const ASPECT_RATIO: f64 = 16.0 / 9.0;
 const IMG_WIDTH: u16 = 400;

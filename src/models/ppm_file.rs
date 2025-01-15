@@ -10,7 +10,12 @@ pub struct PPMFile {
 }
 
 impl PPMFile {
-    pub fn new(width: u16, height: u16, max_color: f64, filename: &str) -> Result<Self, Box<dyn std::error::Error>> {
+    pub fn new(
+        width: u16,
+        height: u16,
+        max_color: f64,
+        filename: &str,
+    ) -> Result<Self, Box<dyn std::error::Error>> {
         let mut handle = File::create(filename).unwrap();
 
         writeln!(handle, "P3").unwrap();
