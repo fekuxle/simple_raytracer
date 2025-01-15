@@ -3,4 +3,4 @@
 
 pub mod vector3;
 
-pub use vector3::Vec3;
+pub use vector3::Vector3;
