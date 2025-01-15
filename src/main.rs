@@ -1,20 +1,17 @@
-#![allow(unused)]
+#![allow(dead_code, unused)]
 use std::{error::Error, fs::File, io::Write};
 
 mod models;
-use models::{NormalizedColor, RGBColor};
+use models::{NormalizedColor, RGBColor, PPMFile};
 
-const IMG_HEIGHT: u16 = 256;
-const IMG_WIDTH: u16 = 256;
+const ASPECT_RATIO: f64 = 16.0 / 9.0;
+const IMG_WIDTH: u16 = 400;
+const IMG_HEIGHT: u16 = (IMG_WIDTH as f64 / ASPECT_RATIO) as u16;
 const MAX_COLOR: f64 = 255.0;
 
 fn main() -> Result<(), Box<dyn Error>> {
-    let mut file = File::create("img.ppm")?;
-
-    // Generate PPM Header
-    writeln!(file, "P3")?;
-    writeln!(file, "{} {}", IMG_WIDTH, IMG_HEIGHT)?;
-    writeln!(file, "{}", MAX_COLOR as u8)?;
+    // Create PPM file
+    let mut file = PPMFile::new(IMG_WIDTH, IMG_HEIGHT, MAX_COLOR, "img.ppm")?;
 
     // Generate Pixel data
     for h in 0..IMG_HEIGHT {
@@ -24,7 +21,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             let green = h as f64 / (IMG_HEIGHT - 1) as f64;
 
             let color = RGBColor::new((red * MAX_COLOR) as u8, (green * MAX_COLOR) as u8, 0);
-            writeln!(file, "{}", *color)?;
+            file.write_color(color);
         }
     }
 
