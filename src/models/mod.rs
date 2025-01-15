@@ -3,6 +3,8 @@
 
 pub mod vector3;
 pub mod color;
+pub mod ray;
+pub mod point;
 
 pub use vector3::Vector3;
 pub use color::{RGBColor, NormalizedColor};
