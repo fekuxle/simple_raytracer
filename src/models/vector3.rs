@@ -3,7 +3,7 @@
 use std::{fmt, ops};
 
 /// Generic struct which can represent a Color, Position and a Vector among other things
-#[derive(Default, Debug, Clone, PartialEq, PartialOrd)]
+#[derive(Default, Debug, Clone, Copy, PartialEq, PartialOrd)]
 pub struct Vector3<T>(pub [T; 3]);
 
 impl<T> Vector3<T> {
@@ -61,11 +61,26 @@ impl<T: ops::Mul<Output = T> + Copy> ops::Mul for Vector3<T> {
     }
 }
 
+impl ops::Mul<f64> for Vector3<f64> {
+    type Output = Self;
+    fn mul(self, rhs: f64) -> Self::Output {
+        Vector3::new(self[0] * rhs, self[1] * rhs, self[2] * rhs)
+    }
+}
+
 impl<T: ops::Mul<Output = T> + Copy> ops::MulAssign for Vector3<T> {
     fn mul_assign(&mut self, rhs: Self) {
         self[0] = self[0] * rhs[0];
         self[1] = self[1] * rhs[1];
         self[2] = self[2] * rhs[2];
+    }
+}
+
+impl ops::MulAssign<f64> for Vector3<f64> {
+    fn mul_assign(&mut self, rhs: f64) {
+        self[0] = self[0] * rhs;
+        self[1] = self[1] * rhs;
+        self[2] = self[2] * rhs;
     }
 }
 
@@ -76,10 +91,25 @@ impl<T: ops::Div<Output = T> + Copy> ops::Div for Vector3<T> {
     }
 }
 
+impl ops::Div<f64> for Vector3<f64> {
+    type Output = Self;
+    fn div(self, rhs: f64) -> Self::Output {
+        Vector3::new(self[0] / rhs, self[1] / rhs, self[2] / rhs)
+    }
+}
+
 impl<T: ops::Div<Output = T> + Copy> ops::DivAssign for Vector3<T> {
     fn div_assign(&mut self, rhs: Self) {
         self[0] = self[0] / rhs[0];
         self[1] = self[1] / rhs[1];
         self[2] = self[2] / rhs[2];
+    }
+}
+
+impl ops::DivAssign<f64> for Vector3<f64> {
+    fn div_assign(&mut self, rhs: f64) {
+        self[0] = self[0] / rhs;
+        self[1] = self[1] / rhs;
+        self[2] = self[2] / rhs;
     }
 }
